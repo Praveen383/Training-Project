@@ -1,0 +1,59 @@
+
+<table class="table table-bordered" >
+        <tr>
+          <th id=1>product</th>
+          <th id=1>product name</th>
+          <th id=1>cost</th>        
+          <th id=1>Quantity</th>
+          <th id=1></th>
+        </tr>
+        <tr *ngFor="let full of Items; let i=index" >
+          <td ><img src="{{full.img}}" alt="Your carted item"></td>
+          <td >{{full.name}}</td>
+          <td >{{full.cost*full.quantity}}</td>      
+          <td>{{full.quantity}}</td>
+          <td> <button class="btn btn-danger" (click)="deleteItem(full, i)">delete</button>  </td>
+        </tr>
+        <tr >          
+          <td colspan="2"></td>
+          <td >Total amount={{amount}}</td>
+          <td colspan="2"></td>
+        </tr>    
+</table>
+<button id="float" class="btn btn-success" (click)="forButProduct(data)" *ngIf="btnDisable">Buy Now</button>
+
+<app-model-window [isModalWindow]="isModalWindow" (isModalClosed)="onModalClose($event)" >
+    <header>Buy now</header>
+        <body>
+            <form id="window" #userForm="ngForm" (ngSubmit)="onEnterCard(userForm)" >
+               
+                <div class="form-group">
+                    <label for="cardname">Bank name:</label>
+                    <input type="text" class="form-control" id="cardname" name="cardname" ngModel required #cardname="ngModel" >
+                </div>
+                <div class="form-group">
+                    <label for="expdata">Exp Date</label>
+                    <input type="number" class="form-control" id="expdata" name="expdata" ngModel #expdata="ngModel" >
+                </div>
+                <div class="form-group">
+                    <label for="cardnumber">card Number:</label>
+                    <input type="number" class="form-control" id="cardnumber"  pattern=".{12,}" name="cardnumber" ngModel #cardnumber="ngModel">
+                    <div *ngIf="cardnumber.invalid && cardnumber.touched">
+                      <span>Please enter valid number</span>
+                  </div>
+                  </div>
+                <div class="form-group">
+                    <label for="cvv">cvv</label>
+                    <input type="number" class="form-control" id="cvv" name="cvv" pattern=".{3}" ngModel required #cvv="ngModel">
+                    <div *ngIf="cvv.invalid && cvv.touched">
+                      <span>enter valid number</span>
+                  </div>
+                  </div>               
+                <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid" id="add" >submit</button>
+            </form>
+        </body>
+        <footer>Modal footer</footer>
+    </app-model-window>
+      
+
+      

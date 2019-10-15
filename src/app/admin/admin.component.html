@@ -1,0 +1,90 @@
+<div>
+    <button id="addNew" (click)="onAdd()">Add new product</button>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <pre id="size">       sizes:</pre>
+            <button class="button button1" id="space" (click)="sortBySmallSize(data)">S</button>
+            <button class="button button2" id="space" (click)="sortByMediumSize()">M</button>
+            <button class="button button3" id="space" (click)="sortByLargeSize()">L</button>
+            <button class="button button4" id="space" (click)="sortByExtraLargeSize()">XL</button>
+        </div>
+        <div class="col-md-10" id="loginBox">
+            <select #selectedData (change)="selectedElement(selectedData)" id="money">
+                <option value="lowtohigh">low to high</option>
+                <option value="hightolow">high to low</option>
+            </select>
+            <div class="container" id="contain" *ngIf="!whileFilter">
+                <div class="row">
+                    <div *ngFor="let detail of allProducts" id="eachProduct">
+
+                        <img src="{{detail.img}}" id="image" alt="product image">
+                        <br>
+                        {{detail.name}} <br>${{detail.cost}}
+                        color:{{detail.color}} <br> size:{{detail.size}} <br>
+                        <button class="btn btn-info" (click)="onEdit(detail,i)">Edit</button>
+                        <span>
+                            <button id="dlt" class="btn btn-danger"
+                                (click)="deleteItem(fulldata, i)">delete</button></span>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="contain" *ngIf="whileFilter">
+                <div class="row">
+                    <div *ngFor="let detail of filter" id="eachProduct">
+
+                        <img src="{{detail.img}}" id="image" alt="product image">
+                        <br>
+                        {{detail.name}} <br>${{detail.cost}}
+                        color:{{detail.color}} <br> size:{{detail.size}} <br>
+                        <button class="btn btn-info" (click)="onEdit(detail,i)">Edit</button>
+                        <span>
+                            <button id="dlt" class="btn btn-danger"
+                                (click)="deleteItem(fulldata, i)">delete</button></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-model-window [isModalWindow]="isModalWindow" (isModalClosed)="onModalClose($event)">
+    <header *ngIf="!edit ">Edit the products</header>
+    <header *ngIf="edit">add the products</header>
+
+    <body>
+        <form id="window" #userForm="ngForm" (ngSubmit)="onAdminProductSubmit(userForm)" *ngFor="let edit of editItem">
+            <div class="form-group">
+                <label for="img">img:</label>
+                <input type="file" class="form-control" id="img" name="img" (change)="onImgChange($event)"
+                    [(ngModel)]="newImage" ngModel required #img="ngModel"> <img src="{{edit.img}}" id="image" alt='editing image'>
+            </div>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" class="form-control" id="name" name="name" ngModel #name="ngModel"
+                    [(ngModel)]="edit.name">
+            </div>
+            <div class="form-group">
+                <label for="cost">cost:</label>
+                <input type="number" class="form-control" id="cost" name="cost" ngModel #cost="ngModel"
+                    [(ngModel)]="edit.cost">
+            </div>
+            <div class="form-group">
+                <label for="size">size</label>
+                <input type="number" class="form-control" id="siz" name="size" ngModel required #size="ngModel"
+                    [(ngModel)]="edit.size" >
+            </div>
+            <div class="form-group">
+                <label for="color">color</label>
+                <input type="text" class="form-control" id="color" name="color" ngModel required #color="ngModel"
+                    [(ngModel)]="edit.color">
+            </div>
+            <button type="submit" class="btn btn-primary" id="edit" [disabled]="userForm.invalid">
+                <span *ngIf="!onAdded">Update</span>
+                <span *ngIf="onAdded">Add</span>
+            </button>
+        </form>
+    </body>
+    <footer>Modal footer</footer>
+</app-model-window>

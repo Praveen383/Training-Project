@@ -1,0 +1,92 @@
+<body>
+    <div>
+        <button class="fixed" id="cart" routerLinkActive="first" [routerLink]="['/cart-items']"> {{cartLength}}Cart
+            Items <em class="fa fa-shopping-cart"></em></button>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <p id="size"> sizes:</p>
+                <button class="button button1" id="space" (click)="sortBySmallSize()">S</button>
+                <button class="button button2" id="space" (click)="sortByMediumSize()">M</button>
+                <button class="button button3" id="space" (click)="sortByLargeSize()">L</button>
+                <button class="button button4" id="space" (click)="sortByExtraLargeSize()">XL</button>
+            </div>
+            <div class="col-md-10">
+                <select #selectedData (change)="selectedElement(selectedData)" id="money">
+                    <option value="lowtohigh">low to high</option>
+                    <option value="hightolow">high to low</option>
+                </select>
+
+                <div class="container" *ngIf="!whileFilter">
+                    <div class="row" id="loginBox">
+                        <div *ngFor="let detail of allProducts" id="eachProduct">
+                            <div id="border">
+                                <img src="{{detail.img}}" id="image" alt="Product image">
+                                <br>
+                                {{detail.name}} <br>${{detail.cost}}
+                                color:{{detail.color}} <br> size:{{detail.size}} <br>
+                                <span>
+                                    <button id="buyNow" class="btn btn-info" (click)="toCart(detail)">Add to
+                                        cart</button></span>
+                                <button id="buyNow" class="btn btn-success" (click)="forButProduct()">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="contain" *ngIf="whileFilter">
+                <div class="row">
+                    <div *ngFor="let detail of filter" id="eachProduct">
+                        <img src="{{detail.img}}" id="image" alt="Product image">
+                        <br>
+                        {{detail.name}} <br>${{detail.cost}}
+                        color:{{detail.color}} <br> size:{{detail.size}} <br>
+                        <span>
+                            <button class="btn btn-info" (click)="toCart(detail)">Add to cart</button></span>
+                        <button id="buyNow" class="btn btn-success" (click)="forButProduct()">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
+<app-model-window [isModalWindow]="isModalWindow" (isModalClosed)="onModalClose($event)">
+    <header>Buy Now</header>
+
+    <body>
+        <form id="window" #userForm="ngForm" (ngSubmit)="onEnterCardDetailes(userForm)">
+
+            <div class="form-group">
+                <label for="cardname">Bank name:</label>
+                <input type="text" class="form-control" id="cardname" name="cardname" ngModel required
+                    #cardname="ngModel" required>
+            </div>
+            <div class="form-group">
+                <label for="expdata">Exp Date</label>
+                <input type="number" class="form-control" id="expdata" name="expdata" ngModel #expdata="ngModel"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="cardnumber">card Number:</label>
+                <input type="number" class="form-control" id="cardnumber" name="cardnumber" pattern=".{12,}" ngModel
+                    #cardnumber="ngModel" required>
+                <div *ngIf="cardnumber.invalid && cardnumber.touched">
+                    <span>Please enter valid number</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cvv">cvv</label>
+                <input type="number" class="form-control" id="cvv" name="cvv" ngModel required #cvv="ngModel"
+                    pattern=".{3}" required>
+                <div *ngIf="cvv.invalid && cvv.touched">
+                    <span>enter valid number</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid" id="add">submit</button>
+        </form>
+    </body>
+    <footer>Modal footer</footer>
+</app-model-window>

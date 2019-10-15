@@ -1,0 +1,25 @@
+<div class="modal modal-container" *ngIf="isModalWindow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <ng-content select="header"></ng-content>
+                </h4>
+                <button type="button" class="close" (click)="onClose()">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <ng-content select="body"></ng-content>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <ng-content select="footer"></ng-content>
+                <button type="button" class="btn btn-danger" (click)="onClose()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

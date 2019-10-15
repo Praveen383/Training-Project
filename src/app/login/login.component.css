@@ -1,0 +1,45 @@
+#center{
+    text-align: center;
+    color: blue;
+}
+
+button{
+    margin-left: 50px;
+}
+#container{
+    margin-top: 80px;
+    box-shadow: 2px 2px 2px 2px black;  
+}
+.modal-container {
+    display: block !important;
+    background: #7d3d3d;
+    opacity: 0.9;
+    
+}
+span{
+    color: red;
+}
+
+
+ label{
+     color: rgb(16, 16, 17);
+ }
+ h3{
+    color: rgb(35, 35, 75);
+}
+/* #image{
+    background-image: url("https://image.shutterstock.com/image-vector/doodle-design-style-concept-ecommerce-600w-309232550.jpg")
+} */
+img{
+    width: 20%;
+    height: 20%;
+}
+#loginBox{
+    margin-top: 150px;
+    box-shadow: 2px 2px 2px 2px black;  
+    background-color: white
+}
+h2{
+    text-align: center;
+    color: rgb(114, 114, 248)
+}

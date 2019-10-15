@@ -1,0 +1,66 @@
+#money{
+    text-align: end;
+    margin-top: 80px; 
+    margin-left: 800px;  
+    background-color: rgb(42, 99, 185);
+    color: white;  
+}
+#addNew{
+    position: fixed;  
+    right: 0;
+    margin-top: 30px;   
+    float: right; 
+    background-color: rgb(42, 99, 185);
+    color: white;  
+}
+#size{
+    margin-top: 80px;
+    background-color: rgb(42, 99, 185);
+    color: white;
+}
+#bg{
+    background-color: lightskyblue;
+    background-color: rgb(42, 99, 185);
+    color: white;
+}
+#space{
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: rgb(42, 99, 185);
+    color: white;
+}
+#image{
+    height: 350px;
+    margin-left: 10px;
+  
+}
+
+#reverse{
+    text-align: end;
+}
+.fixed {    
+    position: fixed;  
+    right: 0;
+    margin-top: 70px;   
+    float: right; 
+    background-color: rgb(42, 99, 185);
+    color: white;
+}
+#eachProduct{
+   margin-right: 30px;
+    margin-top: 30px ;  
+    box-shadow: 2px 2px 2px 2px rgb(177, 206, 245);  
+}
+#window {
+    overflow-y: scroll;
+    max-height: 400px;
+  }
+
+#dlt{
+    margin-left: 40px;
+}
+#loginBox{
+    
+    box-shadow: 2px 2px 2px 2px black;  
+    background-color: white
+}

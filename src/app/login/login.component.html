@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+        <input type="radio" ngModel value="a" (change)="onRadioChange($event)" accept="[.jpg,.jpeg]">
+        <input type="radio" ngModel value="b"  (change)="onRadioChange($event)" accept=".dox,.wps">
+        <input type="file"  >
+        
+
+        </div>
+        <div class="col-md-6" id="loginBox">
+            <h3 id="center">Login-Here</h3>
+            <form #userForm="ngForm" (ngSubmit)="onUserFormSubmit(userForm)">
+
+                <div class="form-group">
+                    <em class="fa fa-user" style="font-size:24px"></em><label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" name="email" autocomplete="off" ngModel required
+                        #email="ngModel">
+                    <div *ngIf="email.invalid && email.touched">
+                        <span>Please enter a mail ID</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <em class="fa fa-lock" style="font-size:24px"></em><label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd" name="password" required ngModel
+                        #password="ngModel" pattern=".{6,}">
+                    <div *ngIf="password.invalid && password.touched && password.dirty">
+                        <span>Please enter min six character</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" id="login" [disabled]="userForm.invalid"> Login</button>
+                <button type="button" class="btn btn-primary" [routerLink]="['/registor']"
+                    id="registor">Registor</button>
+            </form>
+        </div>
+        <div class="col md-3"></div>
+    </div>
+</div>
+<form >

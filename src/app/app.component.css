@@ -1,0 +1,20 @@
+.first{
+    color: white;
+}
+nav{
+    background-color: black;
+}
+#logo{
+    width: 40px;
+    height: 35px;
+}
+
+/* .nav-link{
+    color: rgb(248, 219, 182);
+} */
+#blu{
+    color: blue;
+}
+#col{
+    margin-left: 1300px
+}
